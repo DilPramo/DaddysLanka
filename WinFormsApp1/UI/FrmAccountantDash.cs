@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Daddysanka.UI
 {
-    public partial class FrmAccountantDash: Form
+    public partial class FrmAccountantDash : Form
     {
         public FrmAccountantDash()
         {
             InitializeComponent();
+        }
+
+        private void FrmAccountantDash_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

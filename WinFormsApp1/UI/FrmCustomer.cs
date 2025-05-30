@@ -507,5 +507,10 @@ namespace Daddysanka.UI
             txtEmail.Text = row.Cells["Email"].Value?.ToString();
             txtEmergency.Text = row.Cells["EmergencyContact"].Value?.ToString();
         }
+
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

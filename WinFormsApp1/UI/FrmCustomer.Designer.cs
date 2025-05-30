@@ -72,7 +72,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1668, 100);
+            panel1.Size = new Size(1684, 100);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -100,6 +100,7 @@
             dgvCustomers.Name = "dgvCustomers";
             dgvCustomers.Size = new Size(1157, 682);
             dgvCustomers.TabIndex = 1;
+            dgvCustomers.CellContentClick += dgvCustomers_CellContentClick;
             // 
             // txtSearch
             // 
@@ -179,6 +180,7 @@
             groupBox1.Controls.Add(btnActivate);
             groupBox1.Controls.Add(btnDeactivate);
             groupBox1.FlatStyle = FlatStyle.Flat;
+            groupBox1.Font = new Font("Rockwell", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.Red;
             groupBox1.Location = new Point(1397, 106);
             groupBox1.Name = "groupBox1";
@@ -439,7 +441,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1668, 864);
+            ClientSize = new Size(1684, 861);
             Controls.Add(btnClear);
             Controls.Add(btnUpdate);
             Controls.Add(btnInsert);
