@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DaddysLanka.helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,7 @@ namespace Daddysanka.UI
             lblForgot.MouseEnter += LblForget_MouseEnter;
             lblForgot.MouseLeave += LblForget_MouseLeave;
             lblForgot.Click += LblForget_Click;
+
 
         }
 
@@ -100,7 +102,10 @@ namespace Daddysanka.UI
                                     updateCmd.ExecuteNonQuery();
                                 }
 
-                                // Show dashboard as modal dialog
+                                // automatic backup
+                                BackupHelper.RunAutomaticBackup();
+
+                                // Show dashboard 
                                 Form dashboard = null;
                                 if (role.Equals("Staff", StringComparison.OrdinalIgnoreCase))
                                 {

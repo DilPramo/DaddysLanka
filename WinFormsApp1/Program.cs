@@ -1,5 +1,5 @@
-using DaddysLanka.UI;
 using Daddysanka.UI;
+
 
 namespace WinFormsApp1
 {
@@ -10,17 +10,16 @@ namespace WinFormsApp1
         {
             ApplicationConfiguration.Initialize();
 
-            using (var loginForm = new FrmLogin())
-            {
-                // Show login form as dialog
-                if (loginForm.ShowDialog() == DialogResult.OK)
-                {
-                    
-                }
+            using (var loginForm = new FrmLogin())  
+            {  
+                // Show login form as dialog  
+                if (loginForm.ShowDialog() == DialogResult.OK)  
+                {  
+
+                }  
             } 
 
-            //Application.Run(new Daddysanka.UI.FrmUsers());
-
+            //Application.Run(new FrmAdminDash()); 
         }
     }
 }

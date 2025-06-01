@@ -17,7 +17,7 @@ namespace Daddysanka.UI
         public FrmUsers()
         {
             InitializeComponent();
-            LoadRoles();
+
             LoadUsers();
             txtPassword.ForeColor = Color.Gray;
             txtPassword.UseSystemPasswordChar = false;
@@ -198,34 +198,7 @@ namespace Daddysanka.UI
         {
 
         }
-        private void LoadRoles()
-        {
-            cmbRole.Items.Clear();
 
-            try
-            {
-                DBConnection.Instance.OpenConnection();
-                using (SqlCommand cmd = new SqlCommand("SELECT DISTINCT Role FROM Users", DBConnection.Instance.Connection))
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        if (!reader.IsDBNull(0))
-                        {
-                            cmbRole.Items.Add(reader.GetString(0));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading roles: " + ex.Message);
-            }
-            finally
-            {
-                DBConnection.Instance.CloseConnection();
-            }
-        }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -435,6 +408,131 @@ namespace Daddysanka.UI
                 LoadUsers(); // Refresh the DataGridView after delete
                 clearFields();
             }
+        }
+
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            // Ensure a user is selected
+            if (dgvUsers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a user to activate.");
+                return;
+            }
+
+            // Get selected user ID and IsActive status
+            int userId = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells["UserID"].Value);
+            bool isActive = Convert.ToBoolean(dgvUsers.SelectedRows[0].Cells["IsActive"].Value);
+
+            // If already active, show a message and return
+            if (isActive)
+            {
+                MessageBox.Show("User is already active.");
+                return;
+            }
+
+            try
+            {
+                DBConnection.Instance.OpenConnection();
+                using (SqlCommand cmd = new SqlCommand("ActivateUser", DBConnection.Instance.Connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+
+                    // Output parameter for result
+                    var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+                    int result = (int)returnParameter.Value;
+
+                    if (result == 1)
+                    {
+                        MessageBox.Show("User activated successfully.");
+                    }
+                    else if (result == 0)
+                    {
+                        MessageBox.Show("User is already active.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Activation failed.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error activating user: " + ex.Message);
+            }
+            finally
+            {
+                DBConnection.Instance.CloseConnection();
+                LoadUsers(); // Refresh the DataGridView after activation
+            }
+        }
+
+        private void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            // Ensure a user is selected
+            if (dgvUsers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a user to deactivate.");
+                return;
+            }
+
+            // Get selected user ID and IsActive status
+            int userId = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells["UserID"].Value);
+            bool isActive = Convert.ToBoolean(dgvUsers.SelectedRows[0].Cells["IsActive"].Value);
+
+            // If already inactive, show a message and return
+            if (!isActive)
+            {
+                MessageBox.Show("User is already inactive.");
+                return;
+            }
+
+            try
+            {
+                DBConnection.Instance.OpenConnection();
+                using (SqlCommand cmd = new SqlCommand("DeactivateUser", DBConnection.Instance.Connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+
+                    // Output parameter for result
+                    var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+                    int result = (int)returnParameter.Value;
+
+                    if (result == 1)
+                    {
+                        MessageBox.Show("User deactivated successfully.");
+                    }
+                    else if (result == 0)
+                    {
+                        MessageBox.Show("User is already inactive.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Deactivation failed.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deactivating user: " + ex.Message);
+            }
+            finally
+            {
+                DBConnection.Instance.CloseConnection();
+                LoadUsers(); // Refresh the DataGridView after deactivation
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

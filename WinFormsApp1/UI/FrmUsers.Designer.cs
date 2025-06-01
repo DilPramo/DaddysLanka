@@ -44,8 +44,12 @@
             cmbRole = new ComboBox();
             btnInsert = new Button();
             btnClear = new Button();
+            groupBox1 = new GroupBox();
+            btnDeactivate = new Button();
+            btnActivate = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -60,6 +64,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1684, 122);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // btnDelete
             // 
@@ -214,6 +219,7 @@
             cmbRole.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRole.ForeColor = Color.DimGray;
             cmbRole.FormattingEnabled = true;
+            cmbRole.Items.AddRange(new object[] { "Admin", "Staff", "Accountant" });
             cmbRole.Location = new Point(1285, 550);
             cmbRole.Name = "cmbRole";
             cmbRole.Size = new Size(353, 40);
@@ -228,7 +234,7 @@
             btnInsert.Font = new Font("Arial Narrow", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnInsert.ForeColor = Color.White;
             btnInsert.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInsert.Location = new Point(1246, 700);
+            btnInsert.Location = new Point(1246, 645);
             btnInsert.Name = "btnInsert";
             btnInsert.Size = new Size(187, 64);
             btnInsert.TabIndex = 4;
@@ -244,7 +250,7 @@
             btnClear.Font = new Font("Arial Narrow", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClear.ForeColor = Color.White;
             btnClear.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClear.Location = new Point(1476, 700);
+            btnClear.Location = new Point(1471, 645);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(187, 64);
             btnClear.TabIndex = 9;
@@ -252,12 +258,58 @@
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnDeactivate);
+            groupBox1.Controls.Add(btnActivate);
+            groupBox1.Font = new Font("MS Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.ForeColor = SystemColors.MenuHighlight;
+            groupBox1.Location = new Point(1246, 757);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(426, 83);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Status";
+            // 
+            // btnDeactivate
+            // 
+            btnDeactivate.BackColor = Color.RoyalBlue;
+            btnDeactivate.FlatAppearance.BorderSize = 0;
+            btnDeactivate.FlatStyle = FlatStyle.Flat;
+            btnDeactivate.Font = new Font("Arial Narrow", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDeactivate.ForeColor = Color.White;
+            btnDeactivate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDeactivate.Location = new Point(240, 32);
+            btnDeactivate.Name = "btnDeactivate";
+            btnDeactivate.Size = new Size(152, 40);
+            btnDeactivate.TabIndex = 12;
+            btnDeactivate.Text = "Deactivate";
+            btnDeactivate.UseVisualStyleBackColor = false;
+            btnDeactivate.Click += btnDeactivate_Click;
+            // 
+            // btnActivate
+            // 
+            btnActivate.BackColor = Color.RoyalBlue;
+            btnActivate.FlatAppearance.BorderSize = 0;
+            btnActivate.FlatStyle = FlatStyle.Flat;
+            btnActivate.Font = new Font("Arial Narrow", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnActivate.ForeColor = Color.White;
+            btnActivate.ImageAlign = ContentAlignment.MiddleLeft;
+            btnActivate.Location = new Point(39, 32);
+            btnActivate.Name = "btnActivate";
+            btnActivate.Size = new Size(148, 40);
+            btnActivate.TabIndex = 11;
+            btnActivate.Text = "Activate";
+            btnActivate.UseVisualStyleBackColor = false;
+            btnActivate.Click += btnActivate_Click;
+            // 
             // FrmUsers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1684, 861);
+            Controls.Add(groupBox1);
             Controls.Add(btnClear);
             Controls.Add(btnInsert);
             Controls.Add(cmbRole);
@@ -277,6 +329,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -298,5 +351,8 @@
         private ComboBox cmbRole;
         private Button btnInsert;
         private Button btnClear;
+        private GroupBox groupBox1;
+        private Button btnActivate;
+        private Button btnDeactivate;
     }
 }
