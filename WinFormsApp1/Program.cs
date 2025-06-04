@@ -10,16 +10,16 @@ namespace WinFormsApp1
         {
             ApplicationConfiguration.Initialize();
 
-            using (var loginForm = new FrmLogin())  
+           /* using (var loginForm = new FrmLogin())  
             {  
                 // Show login form as dialog  
                 if (loginForm.ShowDialog() == DialogResult.OK)  
                 {  
 
                 }  
-            } 
+            } */
 
-            //Application.Run(new FrmAdminDash()); 
+            Application.Run(new FrmAdminDash()); 
         }
     }
 }
