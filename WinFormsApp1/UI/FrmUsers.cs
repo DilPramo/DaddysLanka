@@ -96,30 +96,7 @@ namespace Daddysanka.UI
             return true;
         }
 
-        private void LoadUsers()
-        {
-            try
-            {
-                DBConnection.Instance.OpenConnection();
-                using (SqlCommand cmd = new SqlCommand("SELECT UserID, Username, Role, IsActive, DateCreated, LastLogin FROM Users", DBConnection.Instance.Connection))
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dgvUsers.DataSource = dt;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading users: " + ex.Message);
-            }
-            finally
-            {
-                DBConnection.Instance.CloseConnection();
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void btnInsert_Click(object sender, EventArgs e)
         {
             string username = txtUName.Text.ToLower().Trim();
             string password = txtPassword.Text;
@@ -180,6 +157,34 @@ namespace Daddysanka.UI
                 DBConnection.Instance.CloseConnection();
                 LoadUsers(); // Refresh the DataGridView after insertion
             }
+        }
+
+        private void LoadUsers()
+        {
+            try
+            {
+                DBConnection.Instance.OpenConnection();
+                using (SqlCommand cmd = new SqlCommand("SELECT UserID, Username, Role, IsActive, DateCreated, LastLogin FROM Users", DBConnection.Instance.Connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dgvUsers.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading users: " + ex.Message);
+            }
+            finally
+            {
+                DBConnection.Instance.CloseConnection();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void clearFields()
@@ -534,5 +539,7 @@ namespace Daddysanka.UI
         {
 
         }
+
+
     }
 }

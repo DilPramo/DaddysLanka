@@ -10,12 +10,23 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+*.userprefs
 
 # Visual Studio files
 .vs/
 .vscode/
 *.dbmdl
 *.pdb
+*.ilk
+*.log
+*.obj
+*.pch
+*.ipch
+*.aps
+*.ncb
+*.sdf
+*.db
+*.opendb
 
 # NuGet packages
 *.nupkg
@@ -23,6 +34,8 @@ obj/
 **/packages/*
 !**/packages/build/
 !**/packages/repositories.config
+*.nuget.props
+*.nuget.targets
 
 # Windows image file caches
 Thumbs.db
@@ -41,30 +54,31 @@ _ReSharper*/
 
 # Rider
 .idea/
+*.sln.iml
 
 # Test results
 TestResults/
 *.TestResults
 
-# Others
-*.log
-*.vspscc
-*.vssscc
-*.cache
-*.bak
-*.swp
-*.tmp
-*.tmp_proj
+# Dotnet publish
+publish/
 
-# Local history for Visual Studio
-.localhistory/
+# Backup & temporary files
+*~
+~$*
+
+# Microsoft Azure Web App publish settings
+PublishProfiles/
 
 # SQL Server files
 *.mdf
 *.ldf
 
-# Publish Web Output
-*.Publish.xml
+# Logs
+*.log
 
-# Azure Web Apps publish settings
-PublishScripts/
+# Others
+.env
+
+# Allow Git to track the .gitignore itself
+!.gitignore

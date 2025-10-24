@@ -1,4 +1,5 @@
 using Daddysanka.UI;
+using DaddysLanka.UI;
 
 
 namespace WinFormsApp1
@@ -8,9 +9,9 @@ namespace WinFormsApp1
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
+           /* ApplicationConfiguration.Initialize();
 
-           /* using (var loginForm = new FrmLogin())  
+            using (var loginForm = new FrmLogin())  
             {  
                 // Show login form as dialog  
                 if (loginForm.ShowDialog() == DialogResult.OK)  
@@ -19,7 +20,7 @@ namespace WinFormsApp1
                 }  
             } */
 
-            Application.Run(new FrmAdminDash()); 
+            Application.Run(new FrmBooking()); 
         }
     }
 }

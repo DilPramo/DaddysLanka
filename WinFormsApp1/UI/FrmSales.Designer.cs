@@ -192,6 +192,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmSales";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmSales";
             Load += FrmSales_Load;
             panel1.ResumeLayout(false);

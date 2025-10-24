@@ -240,7 +240,7 @@
             btnInsert.TabIndex = 4;
             btnInsert.Text = "Insert";
             btnInsert.UseVisualStyleBackColor = false;
-            btnInsert.Click += button4_Click;
+            btnInsert.Click += btnInsert_Click;
             // 
             // btnClear
             // 

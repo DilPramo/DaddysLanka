@@ -81,7 +81,7 @@ namespace DaddysLanka.UI
                         adapter.Fill(dt);
                         dgvInvoice.DataSource = dt;
                         // Set column headers for clarity
-                        dgvInvoice.Columns["DisplayName"].HeaderText = "Child Name (RegID)";
+                        dgvInvoice.Columns["DisplayName"].HeaderText = "Patient Name (RegID)";
                         dgvInvoice.Columns["InvoiceID"].HeaderText = "Invoice ID";
                         // Optionally hide ChildName and RegID columns if you only want DisplayName
                         dgvInvoice.Columns["ChildName"].Visible = false;
@@ -197,6 +197,11 @@ namespace DaddysLanka.UI
             {
                 Daddysanka.Database.DBConnection.Instance.CloseConnection();
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

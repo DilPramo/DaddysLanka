@@ -14,8 +14,10 @@ namespace Daddysanka.Database
 
         private DBConnection()
         {
-            string connectionString = "Data Source=DESKTOP-73BNEAD\\SQL22;Initial Catalog=DaddysLankaDB;Integrated Security=True;Encrypt=False;Trust Server Certificate=True";
+            string connectionString = "Data Source=DESKTOP-C1MDIVP;Initial Catalog=DaddysLankaDB;Integrated Security=True;Encrypt=False;Trust Server Certificate=True";
             connection = new SqlConnection(connectionString);
+
+            // Data Source=DESKTOP-C1MDIVP;Initial Catalog=DaddysLankaDB;Integrated Security=True;Encrypt=False;Trust Server Certificate=True
         }
 
         public static DBConnection Instance

@@ -9,7 +9,7 @@ namespace DaddysLanka.helpers
 {
     public static class BackupHelper
     {
-        private static readonly string BackupFolder = @"D:\";
+        private static readonly string BackupFolder = @"D:\path_to_backup\";
         private static readonly string BackupPrefix = "DaddysankaBackup_";
         private static readonly string BackupExtension = ".bak";
         private static readonly int MaxBackups = 4;
@@ -47,17 +47,15 @@ namespace DaddysLanka.helpers
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string backupFile = Path.Combine(BackupFolder, $"{BackupPrefix}{timestamp}{BackupExtension}");
 
-                // SQL Server BACKUP DATABASE command
-                string sql = $@"
-                    BACKUP DATABASE [{DatabaseName}]
-                    TO DISK = N'{backupFile}'
-                    WITH FORMAT, INIT, NAME = N'{DatabaseName}-Full Database Backup';";
+
 
                 Daddysanka.Database.DBConnection.Instance.OpenConnection();
                 try
                 {
-                    using (var cmd = new Microsoft.Data.SqlClient.SqlCommand(sql, Daddysanka.Database.DBConnection.Instance.Connection))
+                    using (var cmd = new Microsoft.Data.SqlClient.SqlCommand("BackupDaddysLankaDatabase", Daddysanka.Database.DBConnection.Instance.Connection))
                     {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@BackupFile", backupFile);
                         cmd.CommandTimeout = 600; // 10 minutes, adjust as needed
                         cmd.ExecuteNonQuery();
                     }
